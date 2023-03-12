@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_checked="false">
+        <layer-list>
+            <item android:id="@android:id/background">
+                <shape android:shape="rectangle">
+                    <solid android:color="@android:color/transparent"/>
+                </shape>
+            </item>
+            <item android:id="@android:id/checkbox">
+                <shape android:shape="rectangle">
+                    <solid android:color="@android:color/transparent"/>
+                </shape>
+            </item>
+            <item android:id="@+id/check"
+                android:drawable="@drawable/condo1"/>
+        </layer-list>
+    </item>
+    <item android:state_checked="true">
+        <layer-list>
+            <item android:id="@android:id/background">
+                <shape android:shape="rectangle">
+                    <solid android:color="@android:color/transparent"/>
+                </shape>
+            </item>
+            <item android:id="@android:id/checkbox">
+                <shape android:shape="rectangle">
+                    <solid android:color="@android:color/transparent"/>
+                </shape>
+            </item>
+            <item android:id="@+id/test"
+                android:drawable="@drawable/condo1"/>
+        </layer-list>
+    </item>
+</selector>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <group android:checkableBehavior="all">
+
+        <item
+            android:id="@+id/miApartment"
+            android:title="Apartment"
+            app:showAsAction="never" />
+        <item
+            android:id="@+id/miDetached"
+            android:title="Detached Home"
+            app:showAsAction="never" />
+        <item
+            android:id="@+id/miSemi"
+            android:title="Semi Detached Home"
+            app:showAsAction="never" />
+        <item
+            android:id="@+id/miCondo"
+            android:title="Condominium Apartment"
+            app:showAsAction="never" />
+        <item
+            android:id="@+id/miTownHouse"
+            android:title="Town House"
+            app:showAsAction="never" />
+
+
+    </group>
+</menu>

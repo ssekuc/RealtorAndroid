@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/checkbox">
+        <shape android:shape="rectangle">
+            <solid android:color="@android:color/transparent" />
+        </shape>
+    </item>
+    <item android:id="@+id/check_image">
+        <bitmap android:src="@drawable/town1"
+            android:gravity="center" />
+    </item>
+</layer-list>
