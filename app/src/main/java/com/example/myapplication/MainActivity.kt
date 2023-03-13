@@ -15,5 +15,7 @@ class MainActivity : AppCompatActivity() {
         binding.btnEnter.setOnClickListener {
             Intent(this, HouseList::class.java).also { startActivity(it) }
         }
+
+
     }
 }
