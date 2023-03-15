@@ -11,7 +11,8 @@ import androidx.recyclerview.widget.RecyclerView
 
 class RecylerViewAdapter : RecyclerView.Adapter<RecylerViewAdapter.ViewHolder>() {
 
-    private val itemTitles = arrayOf("text1", "text2")
+
+    private var itemTitles = mutableListOf<String>()
 
     private val itemImages = intArrayOf(
         R.drawable.apt1,
@@ -30,6 +31,7 @@ class RecylerViewAdapter : RecyclerView.Adapter<RecylerViewAdapter.ViewHolder>()
         R.drawable.town2,
         R.drawable.town3
     )
+
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
@@ -57,5 +59,10 @@ class RecylerViewAdapter : RecyclerView.Adapter<RecylerViewAdapter.ViewHolder>()
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.textTitle.text = itemTitles [position]
         holder.image.setImageResource(itemImages [position])
+    }
+
+    fun updateData(data: List<String>) {
+        itemTitles = data.toMutableList()
+        notifyDataSetChanged()
     }
 }

@@ -13,6 +13,11 @@ class HouseList : AppCompatActivity() {
     private lateinit var binding: ActivityHouseListBinding
     private var layoutManager: RecyclerView.LayoutManager? = null
     private var adapter: RecyclerView.Adapter<RecylerViewAdapter.ViewHolder>? = null
+    private var houseDataList: List<HouseData> = emptyList()
+
+    companion object{
+        val dataPrice = mutableListOf<String>()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,6 +29,8 @@ class HouseList : AppCompatActivity() {
 
         adapter = RecylerViewAdapter ()
         binding.recyclerView.adapter = adapter
+
+        (adapter as? RecylerViewAdapter)?.updateData(emptyList())
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -34,12 +41,20 @@ class HouseList : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
+        val pricesApt = HouseData.getApartments()
+        val pricesCondo = HouseData.getCondos()
+        val pricesHouse = HouseData.getHouses()
+        val pricesSemi = HouseData.getSemis()
+        val pricesTown = HouseData.getTowns()
+
         when(item.itemId) {
             R.id.miApartment ->
                 if (item.isChecked) {
                     item.setChecked(false)
+                    dataPrice.addAll(pricesApt.map { it.price })
                 } else {
                     item.setChecked(true)
+                    dataPrice.removeAll(pricesApt.map { it.price })
                 }
             R.id.miTownHouse ->
                 if (item.isChecked) {
@@ -66,6 +81,9 @@ class HouseList : AppCompatActivity() {
                     item.setChecked(true)
                 }
         }
+
+        (adapter as? RecylerViewAdapter)?.updateData(dataPrice)
+        adapter?.notifyDataSetChanged()
 
         return super.onOptionsItemSelected(item)
     }
