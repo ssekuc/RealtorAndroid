@@ -5,23 +5,25 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.CheckBox
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.databinding.ActivityHouseListBinding
 
 class HouseList : AppCompatActivity() {
     private lateinit var binding: ActivityHouseListBinding
-
-
+    private var layoutManager: RecyclerView.LayoutManager? = null
+    private var adapter: RecyclerView.Adapter<RecylerViewAdapter.ViewHolder>? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityHouseListBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val myCheckbox = findViewById<CheckBox>(R.id.test)
-        myCheckbox.setOnCheckedChangeListener { buttonView, isChecked ->
-            // Handle checkbox state changes here
-        }
+        layoutManager = LinearLayoutManager (this)
+        binding.recyclerView.layoutManager = layoutManager
 
+        adapter = RecylerViewAdapter ()
+        binding.recyclerView.adapter = adapter
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
