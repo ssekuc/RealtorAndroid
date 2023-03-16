@@ -20,7 +20,6 @@ class RecylerViewAdapter : RecyclerView.Adapter<RecylerViewAdapter.ViewHolder>()
 
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-
         var image: ImageView
         var textTitle: TextView
         var addBut: Button
@@ -30,6 +29,8 @@ class RecylerViewAdapter : RecyclerView.Adapter<RecylerViewAdapter.ViewHolder>()
             textTitle = itemView.findViewById(R.id.tv_price)
             addBut = itemView.findViewById(R.id.btn_add)
         }
+
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
