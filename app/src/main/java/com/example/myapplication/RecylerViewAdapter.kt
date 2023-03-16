@@ -1,6 +1,7 @@
 package com.example.myapplication
 
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,29 +9,14 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 
 class RecylerViewAdapter : RecyclerView.Adapter<RecylerViewAdapter.ViewHolder>() {
 
 
     private var itemTitles = mutableListOf<String>()
 
-    private val itemImages = intArrayOf(
-        R.drawable.apt1,
-        R.drawable.apt2,
-        R.drawable.apt3,
-        R.drawable.condo1,
-        R.drawable.condo2,
-        R.drawable.condo3,
-        R.drawable.house1,
-        R.drawable.house2,
-        R.drawable.house3,
-        R.drawable.semi1,
-        R.drawable.semi2,
-        R.drawable.semi3,
-        R.drawable.town1,
-        R.drawable.town2,
-        R.drawable.town3
-    )
+    private var itemImages = mutableListOf<String>()
 
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -57,12 +43,21 @@ class RecylerViewAdapter : RecyclerView.Adapter<RecylerViewAdapter.ViewHolder>()
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.textTitle.text = itemTitles [position]
-        holder.image.setImageResource(itemImages [position])
+        holder.textTitle.text = itemTitles[position]
+        val imageResourceId = holder.itemView.context.resources.getIdentifier(
+            itemImages[position], "drawable", holder.itemView.context.packageName
+        )
+        Glide.with(holder.itemView)
+            .load(imageResourceId)
+            .placeholder(R.drawable.company_logo) // add a placeholder image
+            .error(R.drawable.apt1)
+            .into(holder.image)
     }
 
-    fun updateData(data: List<String>) {
+
+    fun updateData(data: List<String>, dataImage: List<String>) {
         itemTitles = data.toMutableList()
+        itemImages = dataImage.toMutableList()
         notifyDataSetChanged()
     }
 }

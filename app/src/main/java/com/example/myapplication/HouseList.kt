@@ -17,6 +17,7 @@ class HouseList : AppCompatActivity() {
 
     companion object{
         val dataPrice = mutableListOf<String>()
+        val dataImage = mutableListOf<String>()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,7 +31,7 @@ class HouseList : AppCompatActivity() {
         adapter = RecylerViewAdapter ()
         binding.recyclerView.adapter = adapter
 
-        (adapter as? RecylerViewAdapter)?.updateData(emptyList())
+        (adapter as? RecylerViewAdapter)?.updateData(emptyList(), emptyList())
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -51,38 +52,57 @@ class HouseList : AppCompatActivity() {
             R.id.miApartment ->
                 if (item.isChecked) {
                     item.setChecked(false)
-                    dataPrice.addAll(pricesApt.map { it.price })
+                    dataPrice.removeAll(pricesApt.map { it.price })
+                    dataImage.removeAll(pricesApt.map { it.picture })
+
                 } else {
                     item.setChecked(true)
-                    dataPrice.removeAll(pricesApt.map { it.price })
+                    dataPrice.addAll(pricesApt.map { it.price })
+                    dataImage.addAll(pricesApt.map { it.picture })
                 }
             R.id.miTownHouse ->
                 if (item.isChecked) {
                     item.setChecked(false)
+                    dataPrice.removeAll (pricesTown.map { it.price })
+                    dataImage.removeAll (pricesTown.map { it.picture })
                 } else {
                     item.setChecked(true)
+                    dataPrice.addAll(pricesTown.map { it.price })
+                    dataImage.addAll(pricesTown.map { it.picture })
                 }
             R.id.miCondo ->
                 if (item.isChecked) {
                     item.setChecked(false)
+                    dataPrice.removeAll(pricesCondo.map { it.price })
+                    dataImage.removeAll(pricesCondo.map { it.picture })
                 } else {
                     item.setChecked(true)
+                    dataPrice.addAll(pricesCondo.map { it.price })
+                    dataImage.addAll(pricesCondo.map { it.picture })
                 }
             R.id.miSemi ->
                 if (item.isChecked) {
                     item.setChecked(false)
+                    dataPrice.removeAll(pricesSemi.map { it.price })
+                    dataImage.removeAll(pricesSemi.map { it.picture })
                 } else {
                     item.setChecked(true)
+                    dataPrice.addAll(pricesSemi.map { it.price })
+                    dataImage.addAll(pricesSemi.map { it.picture })
                 }
             R.id.miDetached ->
                 if (item.isChecked) {
                     item.setChecked(false)
+                    dataPrice.removeAll(pricesHouse.map { it.price })
+                    dataImage.removeAll(pricesHouse.map { it.picture })
                 } else {
                     item.setChecked(true)
+                    dataPrice.addAll(pricesHouse.map { it.price })
+                    dataImage.addAll(pricesHouse.map { it.picture })
                 }
         }
 
-        (adapter as? RecylerViewAdapter)?.updateData(dataPrice)
+        (adapter as? RecylerViewAdapter)?.updateData(dataPrice, dataImage)
         adapter?.notifyDataSetChanged()
 
         return super.onOptionsItemSelected(item)
